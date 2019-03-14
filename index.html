@@ -71,7 +71,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/home.jpg') 
+            background-image: url('/img/header_img/timg2.jpg') 
             /*config*/
         
     }
@@ -141,14 +141,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -211,33 +211,26 @@
 
 <div class="post-preview">
 
-    <a href="/article/hexo-theme-huweihuang/">
+    <a href="/article/HttpServletResponse/">
         <h2 class="post-title">
-            [Hexo] Theme HuWeihuang
+            Untitled
         </h2>
         <h3 class="post-subtitle">
-            This is hexo theme Demo.
+            
         </h3>
         <div class="post-content-preview">
-            
-This HuWeihuang theme created by HuWeihuang modified from the original Porter YuHsuan
+            Response
+响应流程
 
-Live Demo
-Hu Weihuang Blog : www.huweihuang.com
-
-Install Hexo
-Install Node.js  and Git
-123#For Macbrew instal......
+客户端发送 Http 请求后，先到 tmocat 引擎中进行解析资源，在把这些请求信息封装到 request 中，同时，response 作为一个空参数和 reques 一起传入doGet() 方法中，方法中有对 response 中的内容进行填写。方法结束后，tomcat 引擎从response 缓存中拿取信息，并且跟自己的内容组装成 Http 响应（响应行，......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 宋健 on
-            2017-09-18
+            2019-03-14
         </p>
         <div class="tags">
-            
-              <a href="/tags/#Hexo" title="Hexo">Hexo</a>
             
         </div>
     
@@ -294,17 +287,26 @@ Install Node.js  and Git
     <div class="short-about">
 
         
-            <img id = "avatar_pic" src="/img/avatar/ironman.png" />
+            <img id = "avatar_pic" src="/img/avatar/icon_wechat.png" />
         
 
         
-            <p>Stay hungry,Stay foolish</p>
+            <p>Energy and persistence conquer all things</p>
         
 
         <!-- SNS Link -->
         <ul class="list-inline">
             
             
+            
+                <li>
+                    <a target="_blank" href="https://www.zhihu.com/people/qi-xiao-niao-zhui-fei-ji">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                        </span>
+                    </a>
+                </li>
             
 
             
@@ -336,7 +338,7 @@ Install Node.js  and Git
     <ul>
       
         <li>
-          <a href="/article/hexo-theme-huweihuang/">[Hexo] Theme HuWeihuang</a>
+          <a href="/article/HttpServletResponse/">(no title)</a>
         </li>
       
     </ul>
@@ -350,11 +352,7 @@ Install Node.js  and Git
 <ul class="list-inline">
 
     
-        <li><a href="http://blog.csdn.net/huwh_" target="_blank">CSDN Blog 胡伟煌</a></li>
-    
-        <li><a href="http://dockone.io/people/胡伟煌" target="_blank">DockOne 胡伟煌</a></li>
-    
-        <li><a href="https://yq.aliyun.com/u/huweihuang" target="_blank">阿里云栖社区 胡伟煌</a></li>
+        <li><a href="https://saierti.github.io/" target="_blank">GitHub Blog saierti</a></li>
     
 </ul>
 
@@ -363,7 +361,7 @@ Install Node.js  and Git
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
 
         <hr>
@@ -384,6 +382,15 @@ Install Node.js  and Git
                 <ul class="list-inline text-center">
                 
                 
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/qi-xiao-niao-zhui-fei-ji">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
                 
 
                 
@@ -410,13 +417,6 @@ Install Node.js  and Git
                     Theme by <a href="http://beantech.org">BeanTech</a> 
                     <span style="display: inline-block; margin: 0 5px;">
                         <i class="fa fa-heart"></i>
-                    </span> 
-                    re-Ported by <a href="http://www.huweihuang.com">胡伟煌</a> | 
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
-                    </iframe>
                 </p>
             </div>
         </div>
