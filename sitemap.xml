@@ -3,12 +3,17 @@
 
     <sitemap>
         <loc>http://www.SongJian.com/post-sitemap.xml</loc>
-        <lastmod>2018-12-16T05:33:53.214Z</lastmod>
+        <lastmod>2019-03-14T04:15:10.416Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>http://www.SongJian.com/page-sitemap.xml</loc>
-        <lastmod>2019-03-13T17:58:17.158Z</lastmod>
+        <lastmod>2019-03-14T04:07:31.264Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>http://www.SongJian.com/tag-sitemap.xml</loc>
+        <lastmod>2019-03-14T04:15:10.416Z</lastmod>
     </sitemap>
 
 </sitemapindex>
