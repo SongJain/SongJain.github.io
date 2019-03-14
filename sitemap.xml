@@ -2,17 +2,17 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <sitemap>
-        <loc>http://www.SongJian.com/post-sitemap.xml</loc>
+        <loc>https://songjain.github.io/post-sitemap.xml</loc>
         <lastmod>2019-03-14T04:15:10.416Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://www.SongJian.com/page-sitemap.xml</loc>
+        <loc>https://songjain.github.io/page-sitemap.xml</loc>
         <lastmod>2019-03-14T08:50:58.023Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://www.SongJian.com/tag-sitemap.xml</loc>
+        <loc>https://songjain.github.io/tag-sitemap.xml</loc>
         <lastmod>2019-03-14T04:15:10.416Z</lastmod>
     </sitemap>
 
