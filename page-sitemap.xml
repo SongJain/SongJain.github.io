@@ -7,8 +7,22 @@
     </url>
     
     <url>
+        <loc>http://www.SongJian.com/about/</loc>
+        <lastmod>2019-03-14T08:50:58.023Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
         <loc>http://www.SongJian.com/tags/</loc>
-        <lastmod>2019-03-14T04:07:31.264Z</lastmod>
+        <lastmod>2019-03-14T08:50:22.597Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>http://www.SongJian.com/archive/</loc>
+        <lastmod>2019-03-14T08:48:35.804Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -16,20 +30,6 @@
     <url>
         <loc>http://www.SongJian.com/404.html</loc>
         <lastmod>2019-03-14T04:05:51.650Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>http://www.SongJian.com/archive/</loc>
-        <lastmod>2019-03-14T04:05:16.516Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>http://www.SongJian.com/about/</loc>
-        <lastmod>2019-03-14T04:04:17.395Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
