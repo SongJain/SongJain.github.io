@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://songjain.github.io/article/4/</loc>
+        <lastmod>2019-03-15T06:04:52.229Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://songjain.github.io/article/aa/</loc>
         <lastmod>2019-03-15T05:47:06.010Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -17,14 +25,6 @@
     <url>
         <loc>https://songjain.github.io/article/3/</loc>
         <lastmod>2019-03-15T05:30:22.738Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://songjain.github.io/article/4/</loc>
-        <lastmod>2019-03-15T05:22:58.451Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
