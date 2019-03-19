@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          异或的巧妙用法 - 宋健 | Blog
+          计算机组成原理概论 - 宋健 | Blog
         
     </title>
 
-    <link rel="canonical" href="https://songjain.github.io/article/异或的巧妙用法/">
+    <link rel="canonical" href="https://songjain.github.io/article/计算机组成原理概论/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,10 +88,10 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                              <a class="tag" href="/tags/#计算机组成原理" title="计算机组成原理">计算机组成原理</a>
                             
                         </div>
-                        <h1>异或的巧妙用法</h1>
+                        <h1>计算机组成原理概论</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 宋健 on
@@ -215,28 +215,50 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="异或的巧妙用法">异或的巧妙用法</h1>
-<p>在leetcode上刷题总能够看到一些惊艳，让人拍案叫绝的解题方法。</p>
-<p>原题如下：</p>
-<h4 id="136-只出现一次的数字"><a href="https://leetcode-cn.com/problems/single-number/" target="_blank" rel="noopener">136. 只出现一次的数字</a></h4>
-<p>给定一个<strong>非空</strong>整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
-<p><strong>说明：</strong></p>
-<p>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,2,1]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [4,1,2,1,2]</span><br><span class="line">输出: 4</span><br></pre></td></tr></table></figure>
-<p>我使用 JAVA，一开始看到重复元素就毫不犹豫使用 HashMap 存储并计数，最终返回 value 为1的不就好了吗！</p>
-<p>通过以后，本以为也没有别的什么方法了吧，最多也就是用 int 数组优化一下时间和空间复杂度（用数组真的比 HashMap快很多），结果没想到最高观看的的解题方法竟然只有三行！！！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numsSize; ++i) &#123;</span><br><span class="line">         num ^= nums[i];</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>异或：相同为0，不同为1，可以想象为偶校验码。</p>
-<p>具体运算：1 ^ 1 = 0;  1 ^ 0 = 1;   0 ^ 0 = 0;</p>
-<p>那么为什么能够这样使用呢，我们来测试来试试：</p>
-<p>假设一个数组为 [1,4,1]，这里要注意，题目中说的，重复元素只能重复两次！</p>
-<p>第一步：0 ^ 1 = 1</p>
-<p>第二步：1 ^ 4 = 5 （0001 ^ 0100 = 0101）</p>
-<p>第三步：5 ^ 1 = 4 （0101 ^ 0001 = 0100）</p>
-<p>最终返回 4 ，完成。</p>
+                <h1 id="概论">概论</h1>
+<h2 id="计算机的基本组成">计算机的基本组成</h2>
+<h3 id="冯-诺依曼计算机的特点">冯 · 诺依曼计算机的特点</h3>
+<p>1、用二进制表示数据和程序。</p>
+<p>2、采取存储程序的方式，按地址寻访。</p>
+<p>3、计算机 = 存储器 + 运算器 + 控制器 + I/O设备</p>
+<p>4、以 <strong>运算器</strong> 为中心（这个区别于现代计算机）。</p>
+<h3 id="计算机五大部件">计算机五大部件</h3>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/1.jpg" alt=""></p>
+<p>运算器：完成算术运算于逻辑运算，并将运算的中间结果暂存在运算器内</p>
+<p>存储器：用来存储数据和程序</p>
+<p>控制器：控制、指挥程序、数据输入、运行、处理运算结果</p>
+<p>输入设备：键盘等</p>
+<p>输出设备：显示器，音响等</p>
+<p>计算机的五大部件（五大子系统）在控制器的控制下，有条不紊的自动工作。</p>
+<p>我们常说的 CPU 就是 <strong>运算器 + 控制器</strong> 。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/2.jpg" alt=""></p>
+<h3 id="计算机工作过程">计算机工作过程</h3>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/3.jpg" alt=""></p>
+<h4 id="主存储器内存或主存">主存储器（内存或主存）</h4>
+<p>主存储器包括了三个重要部件：存储体M，MAR寄存器，MDR寄存器。</p>
+<p>存储体由许多存储单元组成，存储单元由许多存储元件，存储元件能存储一位二进制数（0或1）。因此一个存储单元能存储一串二进制代码，这一串二进制代码称为存储字。</p>
+<p>那么在了解 MAR寄存器和 MDR寄存器之前，我们先要了解一下主存是怎么工作的。主存的工作方式就是按照存储单元的地址号来实现对存储字各位的存（写入）、取（读出），这种方式称为按地址存储方式，简称地址访问存储器（访存）。这种访存的优势在于程序只需要按顺序存储，每次只需要自动加1即可访问下一个指令的地址。</p>
+<p>为了实现访存的方式，主存中必须配置两个寄存器。MAR（存储器地址寄存器），用来存储 <strong>预访问的存储单元的地址</strong> 。MDR（存储器数据寄存器），用来 存放从存储体某个单元中的取出的代码或者准备往存储单元中存入的代码。</p>
+<h4 id="运算器">运算器</h4>
+<p>运算器最少包括了三种寄存器和一个算术逻辑单元（ALU）。其中三种寄存器分别为：ACC（累加器）、MQ（乘商寄存器）、X（操作数寄存器）。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/6.jpg" alt=""></p>
+<p>加法操作过程：从主存中取出一个存放在M地址号单元内的加数 [M]，送到X寄存器中，然后和被加数[ACC]相加，结果保留在ACC中。即：[M] -&gt;X   ;  [X] + [ACC] -&gt; ACC。</p>
+<p>减法同理加法。</p>
+<p>乘法操作过程：从主存中取出存放在M号地址单元的乘数[M]，送到乘商寄存器MQ中，然后再把被乘数送入X寄存器中，并将ACC清0，然后[X]于[MQ]相乘，结果（积）的高位保留在ACC中，低位保留在MQ中。</p>
+<p>即：[M] -&gt; MQ	 ;	[ACC] -&gt; X    ; 	0 -&gt; [ACC]   ;   [MQ]   *  [X]  -&gt; ACC // MQ</p>
+<p>除法同理。</p>
+<h4 id="控制器">控制器</h4>
+<p>控制器是计算机的神经中枢。他的运行分成了三个阶段：</p>
+<p>1、取指过程。在存储器中读出一条指令。</p>
+<p>2、分析过程。对取出的指令进行分析，指出指令完成时什么操作，并且寻址指明操作数的地址。</p>
+<p>3、执行过程。根据操作数的地址与指令操作完成操作。</p>
+<p>控制器由 PC（程序计数器）、IR（指令寄存器）以及 CU（控制单元）组成。</p>
+<p>PC：存放当前准备打算执行程序的地址，他和 MAR 之间有一条直接通道，并且具有自动加一的功能，也就是可以自动走向下一条指令。</p>
+<p>IR：用来存放当前的指令，IR 的内容来自主存的 MDR。IR 中的操作码 OP(IR) 传至 CU，用户来分析指令；IR 中的地址 AD(IR) 作为操作数的地址送到存储器的 MAR 。</p>
+<p>CU：分析当前指令所需要完成的操作，并发送出微指令，控制所有被控对象。</p>
+<h2 id="多层次的计算机系统">多层次的计算机系统</h2>
+<p>上图就完事了。</p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/4.jpg" alt=""></p>
 
                 
 
@@ -244,13 +266,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/不要小瞧数组/" data-toggle="tooltip" data-placement="top" title="不要小瞧数组">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/说点什么/" data-toggle="tooltip" data-placement="top" title="说点什么">Next Post &rarr;</a>
+                            <a href="/article/线段树/" data-toggle="tooltip" data-placement="top" title="线段树">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -340,7 +358,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#异或的巧妙用法"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5F02;&#x6216;&#x7684;&#x5DE7;&#x5999;&#x7528;&#x6CD5;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#136-只出现一次的数字"><span class="toc-nav-number">1.0.0.1.</span> <span class="toc-nav-text"><a href="https://leetcode-cn.com/problems/single-number/" target="_blank" rel="noopener">136. &#x53EA;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x7684;&#x6570;&#x5B57;</a></span></a></li></ol></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#概论"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6982;&#x8BBA;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#计算机的基本组成"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x57FA;&#x672C;&#x7EC4;&#x6210;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#冯-诺依曼计算机的特点"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">&#x51AF; &#xB7; &#x8BFA;&#x4F9D;&#x66FC;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x7279;&#x70B9;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#计算机五大部件"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x4E94;&#x5927;&#x90E8;&#x4EF6;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#计算机工作过程"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x5DE5;&#x4F5C;&#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#主存储器内存或主存"><span class="toc-nav-number">1.1.3.1.</span> <span class="toc-nav-text">&#x4E3B;&#x5B58;&#x50A8;&#x5668;&#xFF08;&#x5185;&#x5B58;&#x6216;&#x4E3B;&#x5B58;&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#运算器"><span class="toc-nav-number">1.1.3.2.</span> <span class="toc-nav-text">&#x8FD0;&#x7B97;&#x5668;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器"><span class="toc-nav-number">1.1.3.3.</span> <span class="toc-nav-text">&#x63A7;&#x5236;&#x5668;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#多层次的计算机系统"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x591A;&#x5C42;&#x6B21;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x7CFB;&#x7EDF;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -360,7 +378,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
+                          <a class="tag" href="/tags/#计算机组成原理" title="计算机组成原理">计算机组成原理</a>
                         
                     </div>
                 </section>
@@ -389,8 +407,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "https://songjain.github.io/article/异或的巧妙用法/";
-    var disqus_url = "https://songjain.github.io/article/异或的巧妙用法/";
+    var disqus_identifier = "https://songjain.github.io/article/计算机组成原理概论/";
+    var disqus_url = "https://songjain.github.io/article/计算机组成原理概论/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
