@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          计算机组成原理概论 - 宋健 | Blog
+          Trie - 宋健 | Blog
         
     </title>
 
-    <link rel="canonical" href="https://songjain.github.io/article/计算机组成原理概论/">
+    <link rel="canonical" href="https://songjain.github.io/article/Trie字典树/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#计算机组成原理" title="计算机组成原理">计算机组成原理</a>
+                              <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                             
                         </div>
-                        <h1>计算机组成原理概论</h1>
-                        <h2 class="subheading"></h2>
+                        <h1>Trie</h1>
+                        <h2 class="subheading">111</h2>
                         <span class="meta">
                             Posted by 宋健 on
-                            2019-03-19
+                            2019-03-20
                         </span>
                     </div>
                 
@@ -215,50 +215,24 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="概论">概论</h1>
-<h2 id="计算机的基本组成">计算机的基本组成</h2>
-<h3 id="冯-诺依曼计算机的特点">冯 · 诺依曼计算机的特点</h3>
-<p>1、用二进制表示数据和程序。</p>
-<p>2、采取存储程序的方式，按地址寻访。</p>
-<p>3、计算机 = 存储器 + 运算器 + 控制器 + I/O设备</p>
-<p>4、以 <strong>运算器</strong> 为中心（这个区别于现代计算机）。</p>
-<h3 id="计算机五大部件">计算机五大部件</h3>
-<p><img src="/article/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/1.jpg" alt=""></p>
-<p>运算器：完成算术运算于逻辑运算，并将运算的中间结果暂存在运算器内</p>
-<p>存储器：用来存储数据和程序</p>
-<p>控制器：控制、指挥程序、数据输入、运行、处理运算结果</p>
-<p>输入设备：键盘等</p>
-<p>输出设备：显示器，音响等</p>
-<p>计算机的五大部件（五大子系统）在控制器的控制下，有条不紊的自动工作。</p>
-<p>我们常说的 CPU 就是 <strong>运算器 + 控制器</strong> 。</p>
-<p><img src="/article/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/2.jpg" alt=""></p>
-<h3 id="计算机工作过程">计算机工作过程</h3>
-<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/3.jpg" alt=""></p>
-<h4 id="主存储器内存或主存">主存储器（内存或主存）</h4>
-<p>主存储器包括了三个重要部件：存储体M，MAR寄存器，MDR寄存器。</p>
-<p>存储体由许多存储单元组成，存储单元由许多存储元件，存储元件能存储一位二进制数（0或1）。因此一个存储单元能存储一串二进制代码，这一串二进制代码称为存储字。</p>
-<p>那么在了解 MAR寄存器和 MDR寄存器之前，我们先要了解一下主存是怎么工作的。主存的工作方式就是按照存储单元的地址号来实现对存储字各位的存（写入）、取（读出），这种方式称为按地址存储方式，简称地址访问存储器（访存）。这种访存的优势在于程序只需要按顺序存储，每次只需要自动加1即可访问下一个指令的地址。</p>
-<p>为了实现访存的方式，主存中必须配置两个寄存器。MAR（存储器地址寄存器），用来存储 <strong>预访问的存储单元的地址</strong> 。MDR（存储器数据寄存器），用来 存放从存储体某个单元中的取出的代码或者准备往存储单元中存入的代码。</p>
-<h4 id="运算器">运算器</h4>
-<p>运算器最少包括了三种寄存器和一个算术逻辑单元（ALU）。其中三种寄存器分别为：ACC（累加器）、MQ（乘商寄存器）、X（操作数寄存器）。</p>
-<p><img src="/article/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/6.jpg" alt=""></p>
-<p>加法操作过程：从主存中取出一个存放在M地址号单元内的加数 [M]，送到X寄存器中，然后和被加数[ACC]相加，结果保留在ACC中。即：[M] -&gt;X   ;  [X] + [ACC] -&gt; ACC。</p>
-<p>减法同理加法。</p>
-<p>乘法操作过程：从主存中取出存放在M号地址单元的乘数[M]，送到乘商寄存器MQ中，然后再把被乘数送入X寄存器中，并将ACC清0，然后[X]于[MQ]相乘，结果（积）的高位保留在ACC中，低位保留在MQ中。</p>
-<p>即：[M] -&gt; MQ	 ;	[ACC] -&gt; X    ; 	0 -&gt; [ACC]   ;   [MQ]   *  [X]  -&gt; ACC // MQ</p>
-<p>除法同理。</p>
-<h4 id="控制器">控制器</h4>
-<p>控制器是计算机的神经中枢。他的运行分成了三个阶段：</p>
-<p>1、取指过程。在存储器中读出一条指令。</p>
-<p>2、分析过程。对取出的指令进行分析，指出指令完成时什么操作，并且寻址指明操作数的地址。</p>
-<p>3、执行过程。根据操作数的地址与指令操作完成操作。</p>
-<p>控制器由 PC（程序计数器）、IR（指令寄存器）以及 CU（控制单元）组成。</p>
-<p>PC：存放当前准备打算执行程序的地址，他和 MAR 之间有一条直接通道，并且具有自动加一的功能，也就是可以自动走向下一条指令。</p>
-<p>IR：用来存放当前的指令，IR 的内容来自主存的 MDR。IR 中的操作码 OP(IR) 传至 CU，用户来分析指令；IR 中的地址 AD(IR) 作为操作数的地址送到存储器的 MAR 。</p>
-<p>CU：分析当前指令所需要完成的操作，并发送出微指令，控制所有被控对象。</p>
-<h2 id="多层次的计算机系统">多层次的计算机系统</h2>
-<p>上图就完事了。</p>
-<p><img src="/article/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%A6%82%E8%AE%BA/4.jpg" alt=""></p>
+                <h1 id="trie">Trie</h1>
+<h2 id="对比字典与trie">对比字典与Trie</h2>
+<h3 id="字典">字典</h3>
+<p>如果有N个条目，使用树结构，查询的时间复杂度为O(logn)。如果有100万个条目，logn大概是20。</p>
+<h3 id="trie">Trie</h3>
+<p>查询每个条目的时间复杂度，和字典中一共有多少条目无关！！！</p>
+<p>时间复杂度为O(w)，w是查询单词的长度！！！大多数单词的长度小于10。</p>
+<h2 id="什么是trie">什么是Trie</h2>
+<p><img src="/article/Trie%E5%AD%97%E5%85%B8%E6%A0%91/1.jpg" alt=""></p>
+<p>每个节点有若干个指向下个节点的指针，考虑不同的语言，不同情境。</p>
+<p>于是关于映射，我们自然想到了使用Map来作为指向下一个节点。然后我们会发现，有些单词很有可能成为某些单词的前缀（如：dog 的前缀是 do），于是我们添加一个布尔值来标志这个是否可以构成一个单词。</p>
+<p><img src="/article/Trie%E5%AD%97%E5%85%B8%E6%A0%91/2.jpg" alt=""></p>
+<h2 id="trie的定义">Trie的定义</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.TreeMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Trie</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//节点类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//成员变量</span></span><br><span class="line">        <span class="comment">//判断是否是单词   </span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">boolean</span> isWord;</span><br><span class="line">        <span class="comment">//这里运用了TreeMap来定义映射</span></span><br><span class="line">        <span class="keyword">public</span> TreeMap&lt;Character, Node&gt; next;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//构造函数</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">boolean</span> isWord)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.isWord = isWord;</span><br><span class="line">            next = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>(<span class="keyword">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根节点</span></span><br><span class="line">    <span class="keyword">private</span> Node root;</span><br><span class="line">    <span class="comment">//大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Trie的构造方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Trie</span><span class="params">()</span></span>&#123;</span><br><span class="line">        root = <span class="keyword">new</span> Node();</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获得Trie中存储的单词数量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向Trie中添加一个新的单词word（字符串）</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String word)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Node cur = root;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; word.length() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = word.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(cur.next.get(c) == <span class="keyword">null</span>)</span><br><span class="line">                <span class="comment">//put是TreeMap中的添加方法</span></span><br><span class="line">                cur.next.put(c, <span class="keyword">new</span> Node());</span><br><span class="line">            <span class="comment">//走向下一个节点</span></span><br><span class="line">            cur = cur.next.get(c);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//别忘了标记单词的记号！</span></span><br><span class="line">        <span class="comment">//不会放同样的元素，类似于集合</span></span><br><span class="line">        <span class="keyword">if</span>(!cur.isWord)&#123;</span><br><span class="line">            cur.isWord = <span class="keyword">true</span>;</span><br><span class="line">            size ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="查询操作">查询操作</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询单词word是否在Trie中</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(String word)</span></span>&#123;</span><br><span class="line">        Node cur = root;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; word.length() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = word.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(cur.next.get(c) == <span class="keyword">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            cur = cur.next.get(c);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果出了循环，返回的是节点的单词标志</span></span><br><span class="line">        <span class="keyword">return</span> cur.isWord;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="前缀查询">前缀查询</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询是否在Trie中有单词以prefix为前缀</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPrefix</span><span class="params">(String prefix)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Node cur = root;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; prefix.length() ; i ++)&#123;</span><br><span class="line">            <span class="keyword">char</span> c = prefix.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(cur.next.get(c) == <span class="keyword">null</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            cur = cur.next.get(c);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -266,13 +240,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/Trie字典树/" data-toggle="tooltip" data-placement="top" title="Trie">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/线段树/" data-toggle="tooltip" data-placement="top" title="线段树">Next Post &rarr;</a>
+                            <a href="/article/计算机组成原理概论/" data-toggle="tooltip" data-placement="top" title="计算机组成原理概论">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -362,7 +332,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#概论"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6982;&#x8BBA;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#计算机的基本组成"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x57FA;&#x672C;&#x7EC4;&#x6210;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#冯-诺依曼计算机的特点"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">&#x51AF; &#xB7; &#x8BFA;&#x4F9D;&#x66FC;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x7279;&#x70B9;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#计算机五大部件"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x4E94;&#x5927;&#x90E8;&#x4EF6;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#计算机工作过程"><span class="toc-nav-number">1.1.3.</span> <span class="toc-nav-text">&#x8BA1;&#x7B97;&#x673A;&#x5DE5;&#x4F5C;&#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#主存储器内存或主存"><span class="toc-nav-number">1.1.3.1.</span> <span class="toc-nav-text">&#x4E3B;&#x5B58;&#x50A8;&#x5668;&#xFF08;&#x5185;&#x5B58;&#x6216;&#x4E3B;&#x5B58;&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#运算器"><span class="toc-nav-number">1.1.3.2.</span> <span class="toc-nav-text">&#x8FD0;&#x7B97;&#x5668;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#控制器"><span class="toc-nav-number">1.1.3.3.</span> <span class="toc-nav-text">&#x63A7;&#x5236;&#x5668;</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#多层次的计算机系统"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x591A;&#x5C42;&#x6B21;&#x7684;&#x8BA1;&#x7B97;&#x673A;&#x7CFB;&#x7EDF;</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#trie"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Trie</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#对比字典与trie"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x5BF9;&#x6BD4;&#x5B57;&#x5178;&#x4E0E;Trie</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#字典"><span class="toc-nav-number">1.1.1.</span> <span class="toc-nav-text">&#x5B57;&#x5178;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#trie"><span class="toc-nav-number">1.1.2.</span> <span class="toc-nav-text">Trie</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#什么是trie"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4EC0;&#x4E48;&#x662F;Trie</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#trie的定义"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">Trie&#x7684;&#x5B9A;&#x4E49;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#查询操作"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x67E5;&#x8BE2;&#x64CD;&#x4F5C;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#前缀查询"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">&#x524D;&#x7F00;&#x67E5;&#x8BE2;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -382,7 +352,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#计算机组成原理" title="计算机组成原理">计算机组成原理</a>
+                          <a class="tag" href="/tags/#数据结构" title="数据结构">数据结构</a>
                         
                     </div>
                 </section>
@@ -411,8 +381,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "https://songjain.github.io/article/计算机组成原理概论/";
-    var disqus_url = "https://songjain.github.io/article/计算机组成原理概论/";
+    var disqus_identifier = "https://songjain.github.io/article/Trie字典树/";
+    var disqus_url = "https://songjain.github.io/article/Trie字典树/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
