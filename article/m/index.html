@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          数据库系统 - 宋健 | Blog
+          matlab线性规划 - 宋健 | Blog
         
     </title>
 
-    <link rel="canonical" href="https://songjain.github.io/article/数据库系统/">
+    <link rel="canonical" href="https://songjain.github.io/article/m/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
-                            
                         </div>
-                        <h1>数据库系统</h1>
-                        <h2 class="subheading">第一章</h2>
+                        <h1>matlab线性规划</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 宋健 on
-                            2019-03-25
+                            2019-04-22
                         </span>
                     </div>
                 
@@ -215,10 +213,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><img src="/article/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/1.jpg" alt=""></p>
-<p><img src="/article/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/2.jpg" alt=""></p>
-<p><img src="/article/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/3.jpg" alt=""></p>
-<p><img src="/article/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/4.jpg" alt=""></p>
+                <p>x = linprog( c , A , b , Aeq , beq , lb , ub , x0 )是求解线性规划问题的命令。</p>
+<p>c是目标函数的系数向量</p>
+<p>A是不等式约束AX&lt;=b的系数矩阵</p>
+<p>b是不等式约束AX&lt;=b的常数项</p>
+<p>Aeq是等式约束AeqX=beq的系数矩阵</p>
+<p>beq是等式约束AeqX=beq的常数项</p>
+<p>lb是X的下限，ub是X的上限</p>
+<p>X是向量[x1,x2,…xn]即决策变量</p>
+<p>如果模型中不包含不等式约束条件，可用［］代替A和b表示缺省；</p>
+<p>如果没有等式约束条件，可用［］代替Aeq和beq表示缺省；</p>
+<p>如果某个xi无下界或上界，可以设定lb（i）＝－inf或ub（i）＝inf；</p>
+<p>用［x , Fval］代替上述各命令行中左边的x，则可得到在最优解x处的函数值Fval ;</p>
+<p><img src="/article/m/1.jpg" alt=""></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">2</span>;<span class="number">3</span>;<span class="number">-5</span>];             <span class="comment">%目标函数的系数</span></span><br><span class="line">a = [<span class="number">-2</span>,<span class="number">5</span>,<span class="number">-1</span>;<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>];      <span class="comment">%不等式的系数（其中的不等式是小于等于）</span></span><br><span class="line">b = [<span class="number">-10</span>,<span class="number">12</span>];             <span class="comment">%不等式的右边的矩阵</span></span><br><span class="line">aeq = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>];            <span class="comment">%等式部分的系数</span></span><br><span class="line">deq = <span class="number">7</span>;                  <span class="comment">%等式的右边的值</span></span><br><span class="line">x = linprog(-c,a,b,aeq,deq,<span class="built_in">zeros</span>(<span class="number">3</span>,<span class="number">1</span>))</span><br><span class="line">value = c'*x              <span class="comment">%若是目标函数是求解最大值的话，则取-C形式</span></span><br></pre></td></tr></table></figure>
 
                 
 
@@ -226,13 +234,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/m/" data-toggle="tooltip" data-placement="top" title="matlab线性规划">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/Trie字典树/" data-toggle="tooltip" data-placement="top" title="Trie">Next Post &rarr;</a>
+                            <a href="/article/数据库系统/" data-toggle="tooltip" data-placement="top" title="数据库系统">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -342,8 +346,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
-                        
                     </div>
                 </section>
                 
@@ -371,8 +373,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "https://songjain.github.io/article/数据库系统/";
-    var disqus_url = "https://songjain.github.io/article/数据库系统/";
+    var disqus_identifier = "https://songjain.github.io/article/m/";
+    var disqus_url = "https://songjain.github.io/article/m/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
