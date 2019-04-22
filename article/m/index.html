@@ -143,14 +143,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -213,7 +213,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>x = linprog( c , A , b , Aeq , beq , lb , ub , x0 )是求解线性规划问题的命令。</p>
+                <h1 id="matlab线性规划">matlab线性规划</h1>
+<h2 id="参数">参数</h2>
+<p>x = linprog( c , A , b , Aeq , beq , lb , ub , x0 )是求解线性规划问题的命令。</p>
 <p>c是目标函数的系数向量</p>
 <p>A是不等式约束AX&lt;=b的系数矩阵</p>
 <p>b是不等式约束AX&lt;=b的常数项</p>
@@ -225,7 +227,8 @@
 <p>如果没有等式约束条件，可用［］代替Aeq和beq表示缺省；</p>
 <p>如果某个xi无下界或上界，可以设定lb（i）＝－inf或ub（i）＝inf；</p>
 <p>用［x , Fval］代替上述各命令行中左边的x，则可得到在最优解x处的函数值Fval ;</p>
-<p><img src="/article/m/1.jpg" alt=""></p>
+<h2 id="例题">例题</h2>
+<p><img src="/article/m/1.png" alt=""></p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">2</span>;<span class="number">3</span>;<span class="number">-5</span>];             <span class="comment">%目标函数的系数</span></span><br><span class="line">a = [<span class="number">-2</span>,<span class="number">5</span>,<span class="number">-1</span>;<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>];      <span class="comment">%不等式的系数（其中的不等式是小于等于）</span></span><br><span class="line">b = [<span class="number">-10</span>,<span class="number">12</span>];             <span class="comment">%不等式的右边的矩阵</span></span><br><span class="line">aeq = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>];            <span class="comment">%等式部分的系数</span></span><br><span class="line">deq = <span class="number">7</span>;                  <span class="comment">%等式的右边的值</span></span><br><span class="line">x = linprog(-c,a,b,aeq,deq,<span class="built_in">zeros</span>(<span class="number">3</span>,<span class="number">1</span>))</span><br><span class="line">value = c'*x              <span class="comment">%若是目标函数是求解最大值的话，则取-C形式</span></span><br></pre></td></tr></table></figure>
 
                 
@@ -326,7 +329,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#matlab线性规划"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">matlab&#x7EBF;&#x6027;&#x89C4;&#x5212;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#参数"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x53C2;&#x6570;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#例题"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4F8B;&#x9898;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
