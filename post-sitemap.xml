@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>https://songjain.github.io/article/postDecision-Tree/</loc>
+        <lastmod>2019-05-21T01:20:55.872Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://songjain.github.io/article/kNN/</loc>
         <lastmod>2019-05-17T11:31:04.559Z</lastmod>
         <changefreq>weekly</changefreq>
