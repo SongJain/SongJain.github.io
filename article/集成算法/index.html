@@ -145,6 +145,13 @@
 
                         
                         <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/archive/">Archives</a>
                         </li>
                         
@@ -153,13 +160,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -219,7 +219,7 @@
 <p>1、集成学习的思想是将<strong>若干个学习器</strong>（分类器或回归器）组合之后产生一个新学习器。弱分类器（weak learner）指那些分类准确率只稍好于随机猜测的分类器（error rate &lt; 0.5）。</p>
 <p>2、集成算法的成功在于<strong>保证弱分类器的多样性</strong>，而且集成不稳定的算法也能够得到一个明显的性能提升。</p>
 <p>3、常见的集成学习思想有：<strong>Boosting，Bagging，Stacking</strong>。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C1.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/1.jpg" alt=""></p>
 <p>4、弱分类器间存在一定的差异性，这会导致<strong>分类的边界不同</strong>，也就是说可能存在错误。那么将多个弱分类器合并之后，就可以的带更加合理的边界，<strong>减少整体的错误率</strong>，实现更好的效果。</p>
 <p>5、对于<strong>数据集过大或者过小</strong>，可以分别进行<strong>划分和有放回的抽样</strong>操作产生不同的数据子集，然后使用数据集训练不同的分类器，最终再合并成为一个大的分类器。</p>
 <p>6、如果数据的划分过于复杂，使用线性模型很难描述情况，那么可以<strong>训练多个模型</strong>，然后将多个模型进行融合。</p>
@@ -229,14 +229,14 @@
 <p>2、Bagging方法训练出来的模型在预测新样本分类的时候，会使用<strong>多数投票</strong>或者<strong>求均值</strong>的方式来统计最终的分类结果（因为有可能有多个分类器）。</p>
 <p>3、Bagging方法的弱分类器<strong>可以是基本的算法模型</strong>，如：Linear，Ridge，Lasso，Logistic，Softmax，ID3，C4.5，CRAT，SVM，KNN等。</p>
 <p>这里注意：Bagging是有放回的抽样，并且<strong>每个子集的样本数量必须和原始样本数量一致</strong>，但是子集中允许存在重复数据。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C2.png" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/2.png" alt=""></p>
 <h2 id="随机森林random-forest">随机森林(Random Forest)</h2>
 <p><strong>在Bagging策略的基础上修改之后的算法：</strong></p>
 <p>1、从样本集中用Bootstrap采样选出n个样本。</p>
 <p>2、从所有属性中随机选择K个属性，选择出最佳分割属性作为节点创建决策树。</p>
 <p>3、重复以上两步m次，即<strong>建立m棵决策树</strong>。</p>
 <p>4、这<strong>m棵决策树</strong>形成随机森林，通过<strong>投票表决结果</strong>决定数据属于哪一类。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C3.png" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/3.png" alt=""></p>
 <h3 id="extra-tree">Extra Tree</h3>
 <p>ET是RF的一个变种，原理基本相同，区别在于：</p>
 <p>1、RF会随机采样作为决策树的训练集，而ET每个决策树<strong>采用原始数据集</strong>训练。</p>
@@ -245,7 +245,7 @@
 <h3 id="totally-random-trees-embeddingtrte">Totally Random Trees Embedding（TRTE）</h3>
 <p>1、TRTE是一种非监督的数据转化方式。将<strong>低维的数据集映射到高维</strong>，从而让映射到高维的数据更好的应用于分类回归模型。</p>
 <p>2、TRTE算法的转化过程类似RF算法的方法，<strong>建立T个决策树来拟合数据</strong>。当决策树构建完成之后，数据集里面的每个数据<strong>在T个决策树中叶子节点的位置</strong>就定下来了，将<strong>位置信息转化为向量</strong>就完成了特征转化的操作。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C7.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/7.jpg" alt=""></p>
 <h3 id="isolation-forestiforest">Isolation Forest（IForest）</h3>
 <p>IForest是一种<strong>异常点检测算法</strong>，使用类似RF的方式来检测异常点；IForest算法和RF算法的区别在于：</p>
 <p>1、在随机采样的过程中，一般只需要<strong>少量数据</strong>即可。</p>
@@ -253,7 +253,7 @@
 <p>3、IForest算法构建的决策树<strong>一般深度max_depth</strong>是比较小的。</p>
 <p>**区别原因：**目的是异常点检测，所以只要能够区别异常的即可，不需要大量数据，同时也不需要建立太大规模的决策树。</p>
 <p>**对于异常点的判断：**是将测试样本X拟合到T棵决策树上。计算在每棵树上该样本的叶子节点的深度H。从而计算出平均深度h；然后使用公式计算样本点X的异常概率值，p(s,m)的取值范围是[0,1]，越接近1，则是异常点的概率越大。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C4.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/4.jpg" alt=""></p>
 <h3 id="rf随机森林总结">RF随机森林总结</h3>
 <p>在随机森林的构建过程中，由于各棵树之间是<strong>没有关系的，相互独立</strong>；在构建的过程中，构建第m棵字数的时候，不考虑前面的m-1棵树。</p>
 <p><strong>RF的主要优点</strong></p>
@@ -271,18 +271,18 @@
 <p><strong>百度百科：<strong>Boosting是一种框架算法,主要是通过对样本集的操作获得</strong>样本子集</strong>，然后用弱分类算法在样本子集上训练生成一系列的基分类器。</p>
 <p>**提升技术的意义：**如果一个问题存在弱预测模型，那么可以通过提升技术的方法得到一个强预测模型。（强预测模型由若干个弱预测模型累加而成）。</p>
 <p>**常见的模型有：**Adaboost、Gradient Boosting（GBT/GBDT/GBRT）。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C5.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/5.jpg" alt=""></p>
 <p>可以看见，每一次学习后，被误分的样本具有的更高的权重，这权重在下一次构建学习器的时候产生影响（对样本集的影响构建成多个样本子集）。</p>
 <h2 id="adaboost">AdaBoost</h2>
 <p>Adapitve Boosting是一种迭代算法。每轮迭代中会在训练集上产生一个新的学习器，然后使用该学习器对所有的样本进行预测，以评估每个样本的<strong>重要性</strong>。</p>
 <p>算法会为<strong>每个样本赋予一个权重</strong>，每次训练好的学习器标注/预测各个样本，<strong>如果某个样本点被预测越正确，则该样本点的权重降低</strong>，反之则提高样本点的权重。<strong>权重越高的样本在下一次迭代训练中所占的比重越大</strong>，也就是说越难区分的样本在训练过程中就变得越重要。</p>
 <p>下面图片中表现了<strong>样本加权</strong>的过程。标记变大的就是前一次迭代中误判断的样本点，标记越大说明权重越高。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C6.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/6.jpg" alt=""></p>
 <p>Adaboost算法将基分类器的线性组合作为强分类器，同时给分类误差率较效地分类器以大的权值，给分类误差率较大的基分类器以小的权重值。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C8.png" alt=""></p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C11.jpg" alt=""></p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C12.jpg" alt=""></p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C13.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/8.png" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/11.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/12.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/13.jpg" alt=""></p>
 <p>AdaBoost的<strong>优点</strong>如下：</p>
 <p>1、可以处理连续值和连续值</p>
 <p>2、模型的鲁棒性比较强</p>
@@ -293,13 +293,13 @@
 <p><strong>迭代决策树与随机森林的区别：</strong></p>
 <p>1、随机森林使用抽取不同样本构建不同的子树，也就是说第m棵树的构建与第m-1棵树是没有关系的。</p>
 <p>2、迭代决策树在构建子树的时候，使用之前的子树构建结果后形成的残差作为输入数据构建下一个子树，最终预测时候按照子树的构建的顺序进行预测，并将预测结果相加。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C15.jpg" alt=""></p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C18.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/15.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/18.jpg" alt=""></p>
 <h3 id="gbdt回归算法和分类算法的区别">GBDT回归算法和分类算法的区别</h3>
 <p>唯一的区别在于<strong>选择不同的损失函数</strong>。</p>
 <p>1、回归算法中选择的损失函数是均方差（最小二乘）或者是绝对值误差。</p>
 <p>2、分类算法中一般的损失函数选择对数函数来表示。</p>
-<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C16.jpg" alt=""></p>
+<p><img src="/article/%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95/16.jpg" alt=""></p>
 <h1 id="bagging-boosting的区别">Bagging、Boosting的区别</h1>
 <p><strong>1、样本选择</strong></p>
 <p>Bagging算法采用的是有放回的随机抽样；Boosting算法是每一轮的训练集不变，只是训练集中每个样本点的权重发生变化，而权重根据上一轮分类的结果进行调整。</p>
