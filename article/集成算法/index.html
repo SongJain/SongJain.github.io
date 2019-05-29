@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          HttpServletRequest 是个什么东西 - 宋健 | Blog
+          集成学习(Ensemble learning) - 宋健 | Blog
         
     </title>
 
-    <link rel="canonical" href="https://songjain.github.io/article/HttpServletRequest 是个什么东西/">
+    <link rel="canonical" href="https://songjain.github.io/article/集成算法/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                              <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
                             
                         </div>
-                        <h1>HttpServletRequest 是个什么东西</h1>
+                        <h1>集成学习(Ensemble learning)</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 宋健 on
-                            2019-03-15
+                            2019-05-29
                         </span>
                     </div>
                 
@@ -215,37 +215,56 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="httpservletrequest">HttpServletRequest</h1>
-<p>我们在创建 Servlet 时会覆盖 service() 方法，或 doGet() / doPost(), 这些方法都有两个参数，一个为代表请求的 request 和代表响应 response 。service 方法中的 request 的类型是 ServletRequest，而 doGet/doPost 方法的 request 的类型是 HttpServletRequest。</p>
-<h3 id="通过request获得请求行">通过request获得请求行</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">获得客户端的请求方式：<span class="function">String <span class="title">getMethod</span><span class="params">()</span></span></span><br><span class="line"><span class="function">获得请求的资源：</span></span><br><span class="line"><span class="function">String <span class="title">getRequestURI</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">StringBuffer <span class="title">getRequestURL</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">String <span class="title">getContextPath</span><span class="params">()</span> <span class="comment">//web应用的名称</span></span></span><br><span class="line"><span class="function">String <span class="title">getQueryString</span><span class="params">()</span> <span class="comment">//get提交url地址后的参数字符串        username=zhangsan&amp;password=123</span></span></span><br></pre></td></tr></table></figure>
-<p>这里区分一下 URI 和 URL，URI 指的是 <strong>所有资源地址</strong>（磁盘地址，网络地址，相对地址等所有地址），URL指的是 <strong>网络地址</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//1、获得请求方式</span></span><br><span class="line">		String method = request.getMethod();</span><br><span class="line">		System.out.println(<span class="string">"method:"</span>+method);</span><br><span class="line">		<span class="comment">//2、获得请求的资源相关的内容</span></span><br><span class="line">		String requestURI = request.getRequestURI();</span><br><span class="line">		StringBuffer requestURL = request.getRequestURL();</span><br><span class="line">		System.out.println(<span class="string">"uri:"</span>+requestURI);</span><br><span class="line">		System.out.println(<span class="string">"url:"</span>+requestURL);</span><br><span class="line">		<span class="comment">//获得web应用的名称</span></span><br><span class="line">		String contextPath = request.getContextPath();</span><br><span class="line">		System.out.println(<span class="string">"web应用："</span>+contextPath);</span><br><span class="line">		<span class="comment">//地址后的参数的字符串</span></span><br><span class="line">		String queryString = request.getQueryString();</span><br><span class="line">		System.out.println(queryString);</span><br><span class="line">		<span class="comment">//3、获得客户机的信息---获得访问者IP地址</span></span><br><span class="line">		String remoteAddr = request.getRemoteAddr();</span><br><span class="line">		System.out.println(<span class="string">"IP:"</span>+remoteAddr);	</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过request获得请求头">通过request获得请求头</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getHeader</span><span class="params">(String name)</span>	<span class="comment">//这个最常用</span></span></span><br><span class="line"><span class="function">Enumeration <span class="title">getHeaderNames</span><span class="params">()</span>	<span class="comment">//获得所有头名称   以枚举返回</span></span></span><br><span class="line"><span class="function">Enumeration <span class="title">getHeaders</span><span class="params">(String name)</span>		</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getIntHeader</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">getDateHeader</span><span class="params">(String name)</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="通过request获得请求体">通过request获得请求体</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getParameter</span><span class="params">(String name)</span> 	<span class="comment">//获得单个表单的值</span></span></span><br><span class="line"><span class="function">String[] <span class="title">getParameterValues</span><span class="params">(String name)</span>	<span class="comment">//获得多个表单的值</span></span></span><br><span class="line"><span class="function">Enumeration <span class="title">getParameterNames</span><span class="params">()</span>		<span class="comment">//获得所有参数的的枚举</span></span></span><br><span class="line"><span class="function">Map&lt;String,String[]&gt; <span class="title">getParameterMap</span><span class="params">()</span>		<span class="comment">//获得所有参数，封装到一个map中</span></span></span><br></pre></td></tr></table></figure>
-<p>解决post提交方式的乱码： **request.setCharacterEncoding(“UTF-8”); **</p>
-<p>解决get提交的方式的乱码： **parameter = new String(parameter.getbytes(“iso8859-1”),“utf-8”); **</p>
-<h3 id="request的其他功能">request的其他功能</h3>
-<h4 id="request是一个域对象">request是一个域对象</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setAttribute(String name, Object o)</span><br><span class="line">getAttribute(String name)</span><br><span class="line">removeAttribute(String name)</span><br></pre></td></tr></table></figure>
-<p>注意：request域的作用范围：一次请求中。</p>
-<h4 id="request完成请求转发">request完成请求转发</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获得请求转发器----path是转发的地址</span></span><br><span class="line"><span class="function">RequestDispatcher <span class="title">getRequestDispatcher</span><span class="params">(String path)</span></span></span><br><span class="line"><span class="function"><span class="comment">//通过转发器对象转发</span></span></span><br><span class="line"><span class="function">requestDispathcer.<span class="title">forward</span><span class="params">(ServletRequest request, ServletResponse response)</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>转发与重定向的区别？</strong></p>
-<p>1、重定向两次请求，转发一次请求。</p>
-<p>2、重定向地址栏的地址变化，转发地址不变。</p>
-<p>3、重新定向可以访问外部网站转发只能访问内部资源。</p>
-<p>4、转发的性能要优于重定向。</p>
-<p><strong>request 的生命周期：</strong></p>
-<p>创建：访问时创建request。</p>
-<p>销毁：响应结束reques销毁。</p>
-<p>域的作用范围：一次请求中。</p>
-<p>因此在转发过程中 request 可以作为域对象使用，因为转发是一次请求！！！！</p>
-<p><strong>客户端地址与服务器端地址的写法？</strong></p>
-<p>客户端地址：是客户端去访问服务器的地址，服务器外部的地址，特点：写上<code>web</code>应用名称。——重定向。</p>
-<p>服务器端地址：服务器内部资源的跳转的地址，特点：不需要写<code>web</code>应用的名称。——转发。</p>
+                <h2 id="概述">概述</h2>
+<p>1、集成学习的思想是将<strong>若干个学习器</strong>（分类器或回归器）组合之后产生一个新学习器。弱分类器（weak learner）指那些分类准确率只稍好于随机猜测的分类器（error rate &lt; 0.5）。</p>
+<p>2、集成算法的成功在于<strong>保证弱分类器的多样性</strong>，而且集成不稳定的算法也能够得到一个明显的性能提升。</p>
+<p>3、常见的集成学习思想有：<strong>Boosting，Bagging，Stacking</strong>。</p>
+<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C1.jpg" alt=""></p>
+<p>4、弱分类器间存在一定的差异性，这会导致<strong>分类的边界不同</strong>，也就是说可能存在错误。那么将多个弱分类器合并之后，就可以的带更加合理的边界，<strong>减少整体的错误率</strong>，实现更好的效果。</p>
+<p>5、对于<strong>数据集过大或者过小</strong>，可以分别进行<strong>划分和有放回的抽样</strong>操作产生不同的数据子集，然后使用数据集训练不同的分类器，最终再合并成为一个大的分类器。</p>
+<p>6、如果数据的划分过于复杂，使用线性模型很难描述情况，那么可以<strong>训练多个模型</strong>，然后将多个模型进行融合。</p>
+<p>7、对于多个异构的特征集，出现较难融合的情况，那么可以考虑<strong>每个数据集构建一个分类模型</strong>，然后将多个模型融合。</p>
+<h2 id="bagging方法">Bagging方法</h2>
+<p>1、Bagging方法又叫做<strong>自举汇聚法(Bootstrap Aggregating)</strong>，思想是：在原始数据集上通过<strong>有放回抽样</strong>的方式，重新**选择出S个新数据集 **来 <strong>分别训练S个分类器</strong>的集成技术。也就是说这些模型的训练数据中允许存在重复数据。</p>
+<p>2、Bagging方法训练出来的模型在预测新样本分类的时候，会使用<strong>多数投票</strong>或者<strong>求均值</strong>的方式来统计最终的分类结果（因为有可能有多个分类器）。</p>
+<p>3、Bagging方法的弱分类器<strong>可以是基本的算法模型</strong>，如：Linear，Ridge，Lasso，Logistic，Softmax，ID3，C4.5，CRAT，SVM，KNN等。</p>
+<p>这里注意：Bagging是有放回的抽样，并且<strong>每个子集的样本数量必须和原始样本数量一致</strong>，但是子集中允许存在重复数据。</p>
+<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C2.png" alt=""></p>
+<h2 id="随机森林random-forest">随机森林(Random Forest)</h2>
+<p><strong>在Bagging策略的基础上修改之后的算法：</strong></p>
+<p>1、从样本集中用Bootstrap采样选出n个样本。</p>
+<p>2、从所有属性中随机选择K个属性，选择出最佳分割属性作为节点创建决策树。</p>
+<p>3、重复以上两步m次，即<strong>建立m棵决策树</strong>。</p>
+<p>4、这<strong>m棵决策树</strong>形成随机森林，通过<strong>投票表决结果</strong>决定数据属于哪一类。</p>
+<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C3.png" alt=""></p>
+<h3 id="extra-tree">Extra Tree</h3>
+<p>ET是RF的一个变种，原理基本相同，区别在于：</p>
+<p>1、RF会随机采样作为决策树的训练集，而ET每个决策树<strong>采用原始数据集</strong>训练。</p>
+<p>2、RF在选择划分特征点的时候会和传统决策树一样，会<strong>基于信息增益、信息增益率、基尼系数、均方差</strong>等原则来选择最有特征值；而<strong>ET会随机的选择一个特征值</strong>来划分决策树。</p>
+<p><strong>ET因为是随机选择特征值的划分点</strong>，这样会导致决策树的规模<strong>一般大于RF所生成的决策树</strong>。也就是说ET模型的方差相对于RF进一步减少。在某些情况下，ET的泛化能力比RF的强。</p>
+<h3 id="totally-random-trees-embeddingtrte">Totally Random Trees Embedding（TRTE）</h3>
+<p>1、TRTE是一种非监督的数据转化方式。将<strong>低维的数据集映射到高维</strong>，从而让映射到高维的数据更好的应用于分类回归模型。</p>
+<p>2、TRTE算法的转化过程类似RF算法的方法，<strong>建立T个决策树来拟合数据</strong>。当决策树构建完成之后，数据集里面的每个数据<strong>在T个决策树中叶子节点的位置</strong>就定下来了，将<strong>位置信息转化为向量</strong>就完成了特征转化的操作。</p>
+<h3 id="isolation-forestiforest">Isolation Forest（IForest）</h3>
+<p>IForest是一种<strong>异常点检测算法</strong>，使用类似RF的方式来检测异常点；IForest算法和RF算法的区别在于：</p>
+<p>1、在随机采样的过程中，一般只需要<strong>少量数据</strong>即可。</p>
+<p>2、在进行决策树构建的过程中，IForest算法会<strong>随机选择一个划分特征</strong>，并对划分特征随机选择一个<strong>划分阈值</strong>。</p>
+<p>3、IForest算法构建的决策树<strong>一般深度max_depth</strong>是比较小的。</p>
+<p>**区别原因：**目的是异常点检测，所以只要能够区别异常的即可，不需要大量数据，同时也不需要建立太大规模的决策树。</p>
+<p>**对于异常点的判断：**是将测试样本X拟合到T棵决策树上。计算在每棵树上该样本的叶子节点的深度H。从而计算出平均深度h；然后使用公式计算样本点X的异常概率值，p(s,m)的取值范围是[0,1]，越接近1，则是异常点的概率越大。</p>
+<p><img src="D:%5CQQPCmgr%5CDesktop%5Chexo%5Csource_posts%5C%E9%9B%86%E6%88%90%E7%AE%97%E6%B3%95%5C4.png" alt=""></p>
+<h3 id="rf随机森林总结">RF随机森林总结</h3>
+<p>在随机森林的构建过程中，由于各棵树之间是<strong>没有关系的，相互独立</strong>；在构建的过程中，构建第m棵字数的时候，不考虑前面的m-1棵树。</p>
+<p><strong>RF的主要优点</strong></p>
+<p>1、训练可以并行化，对于大规模样本的训练具有速度的优势。</p>
+<p>2、由于进行随机选择决策树划分特征列表，这样在样本维度比较高的时候，仍具有比较高的训练性能。</p>
+<p>3、给出各个特征的重要性列表。</p>
+<p>4、由于存在随机抽样，训练出来的模型方差小，泛化能力强。</p>
+<p>5、RF实现简单。</p>
+<p>6、对于部分特征的缺失不敏感。</p>
+<p><strong>RF的主要缺点</strong></p>
+<p>1、在某些噪声比较大的特征上，RF模型<strong>容易陷入过拟合</strong>。</p>
+<p>2、<strong>取值比较多的划分特征</strong>对RF决策树会产生更大的影响，从而有可能影响模型的效果。</p>
 
                 
 
@@ -253,13 +272,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/计算机网络概论/" data-toggle="tooltip" data-placement="top" title="计算机网络概论">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/事务/" data-toggle="tooltip" data-placement="top" title="事务">Next Post &rarr;</a>
+                            <a href="/article/postDecision-Tree/" data-toggle="tooltip" data-placement="top" title="决策树">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -349,7 +364,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#httpservletrequest"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">HttpServletRequest</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#通过request获得请求行"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">&#x901A;&#x8FC7;request&#x83B7;&#x5F97;&#x8BF7;&#x6C42;&#x884C;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#通过request获得请求头"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">&#x901A;&#x8FC7;request&#x83B7;&#x5F97;&#x8BF7;&#x6C42;&#x5934;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#通过request获得请求体"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">&#x901A;&#x8FC7;request&#x83B7;&#x5F97;&#x8BF7;&#x6C42;&#x4F53;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#request的其他功能"><span class="toc-nav-number">1.0.4.</span> <span class="toc-nav-text">request&#x7684;&#x5176;&#x4ED6;&#x529F;&#x80FD;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#request是一个域对象"><span class="toc-nav-number">1.0.4.1.</span> <span class="toc-nav-text">request&#x662F;&#x4E00;&#x4E2A;&#x57DF;&#x5BF9;&#x8C61;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#request完成请求转发"><span class="toc-nav-number">1.0.4.2.</span> <span class="toc-nav-text">request&#x5B8C;&#x6210;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;</span></a></li></ol></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#概述"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6982;&#x8FF0;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#bagging方法"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Bagging&#x65B9;&#x6CD5;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#随机森林random-forest"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">&#x968F;&#x673A;&#x68EE;&#x6797;(Random Forest)</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#extra-tree"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">Extra Tree</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#totally-random-trees-embeddingtrte"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">Totally Random Trees Embedding&#xFF08;TRTE&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#isolation-forestiforest"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">Isolation Forest&#xFF08;IForest&#xFF09;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#rf随机森林总结"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">RF&#x968F;&#x673A;&#x68EE;&#x6797;&#x603B;&#x7ED3;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -369,7 +384,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#后端" title="后端">后端</a>
+                          <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
                         
                     </div>
                 </section>
@@ -398,8 +413,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "https://songjain.github.io/article/HttpServletRequest 是个什么东西/";
-    var disqus_url = "https://songjain.github.io/article/HttpServletRequest 是个什么东西/";
+    var disqus_identifier = "https://songjain.github.io/article/集成算法/";
+    var disqus_url = "https://songjain.github.io/article/集成算法/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
